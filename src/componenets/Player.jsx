@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({ initialName, symbol, isActive, onChangeName }) {
   const [ playerName, setPlayerName ] = useState(initialName);
   const [ isEditing, setIsEditing ] = useState(false); // Edit/Save 버튼
 
   function handleEditClick() {
     setIsEditing((editing) => !editing);
+
+    if(isEditing){
+      onChangeName(symbol, playerName);
+    }
   }
 
   // input 창에 입려된 value 값을 저장
